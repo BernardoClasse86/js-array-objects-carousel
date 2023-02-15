@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    object-position: center;
+}
+
+button {
+    border-style: none;
+    background-color: transparent;
+}
+
+.carousel {
+    position: relative;
+}
+
+.slide-thumb {
+    display: none;
+}
+
+.my-card-title {
+    position: absolute;
+    color: white;
+    bottom: 3.5rem;
+    margin-bottom: 0;
+    font-weight: bold;
+    right: 1rem;
+}
+
+.my-card-text {
+    position: absolute;
+    color: white;
+    bottom: 0.5rem;
+    margin-bottom: 0;
+    right: 1rem;
+}
+
+.active-slide {
+    display: block;
+}
+
+.arrow {
+    position: absolute;
+    cursor: pointer;
+    color: white;
+    font-size: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrow-left {
+    left: 1.5rem;
+}
+
+.arrow-right {
+    right: 1.5rem;
+}
