@@ -21,7 +21,7 @@ button {
 }
 
 .my-container {
-    max-width: 800px;
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -42,7 +42,7 @@ button {
     position: absolute;
     color: white;
     font-size: 3rem;
-    bottom: 8rem;
+    bottom: 9rem;
     margin-bottom: 0;
     font-weight: bold;
     left: 50%;
