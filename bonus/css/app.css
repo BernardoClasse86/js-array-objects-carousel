@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body-bg {
+    background-color: black;
+}
+
+img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    object-position: center;
+}
+
+button {
+    border-style: none;
+    background-color: transparent;
+}
+
+.my-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.carousel {
+    position: relative;
+}
+
+.slide-thumb {
+    display: none;
+}
+
+.card-img {
+    aspect-ratio: 1;
+}
+
+.my-card-title {
+    text-align: center;
+    position: absolute;
+    color: white;
+    font-size: 3rem;
+    bottom: 8rem;
+    margin-bottom: 0;
+    font-weight: bold;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.my-card-text {
+    background-color: lightgrey;
+    text-align: center;
+    color: black;
+    font-size: 1.5rem;
+    bottom: 0.5rem;
+    padding: 2rem;
+    right: 1rem;
+}
+
+.active-slide {
+    display: block;
+}
+
+.arrow {
+    position: absolute;
+    cursor: pointer;
+    color: white;
+    font-size: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrow-left {
+    left: 1.5rem;
+}
+
+.arrow-right {
+    right: 1.5rem;
+}
+
+#autoplay {
+    padding: 1rem;
+    border-radius: 40px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: beige;
+}
+
+#stop {
+    padding: 1rem;
+    border-radius: 40px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: beige;
+}
+
+#reverse {
+    border-radius: 40px;
+    padding: 1rem;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: beige;
+}
+
+#autoplay:hover {
+    opacity: 0.5;
+}
+
+#stop:hover {
+    opacity: 0.5;
+}
+
+#reverse:hover {
+    opacity: 0.5;
+}
