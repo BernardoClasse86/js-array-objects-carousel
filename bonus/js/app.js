@@ -42,15 +42,14 @@ images.forEach(function(slidesArticle, i) {
     const slideList = `
 
         <img src="${image}" class="card-img">
-        <h5 class="my-card-title">${title}</h5>
-        <p class="my-card-text">${text}</p>
+        <h5 class="my-card my-card-title">${title}</h5>
+        <p class="my-card my-card-text">${text}</p>
 
     `
     divElement.innerHTML += slideList
 })
 
-// GET elements from HTML
-
+// RECUPERO gli elementi dall'HTML
 let slideElements = document.querySelectorAll('.slide-thumb')
 console.log(slideElements)
 
@@ -61,57 +60,16 @@ const rightSlideElement = document.querySelector('.arrow-right')
 console.log(rightSlideElement)
 
 // ADD THE INCREASE VALUE FOR SLIDING SLIDERS
-
 // increase
 let slideCounter = 0
 
 // WHEN I click on right arrow i get to the next element
-rightSlideElement.addEventListener('click', function () {
-    console.log('current slide', slideCounter)
-
-    let actualSlide = slideElements[slideCounter]
-
-    actualSlide.classList.remove('active-slide')
-
-    slideCounter ++  
-
-    if(slideCounter === slideElements.length) {
-
-        slideCounter = 0
-    }
-
-    let nextSlide = slideElements[slideCounter]
-
-    nextSlide.classList.add('active-slide')
-
-    // console.log('next slide', slideCounter)
-})
+rightSlideElement.addEventListener('click', rightSlide)
 
 // WHEN I click on left arrow i get to the previous element
+leftSlideElement.addEventListener('click', leftSlide) 
 
-leftSlideElement.addEventListener('click', function () {
-    console.log('current slide', slideCounter)
-
-    let actualSlide = slideElements[slideCounter]
-
-    actualSlide.classList.remove('active-slide')
-
-    slideCounter --
-    
-    if(slideCounter < 0) {
-
-        slideCounter = slideElements.length - 1
-    }
-
-
-    let previousSlide = slideElements[slideCounter]
-
-    previousSlide.classList.add('active-slide')
-
-    // console.log('previous slide', slideCounter)
-})
-
-// aggiung autoplay stop e reverse autoplay
+// AGGIUNGO AUTOPLAY, STOP E REVERSE PLAY
 
 // recupero i bottoni dall HTML
 const autoplayButton = document.getElementById('autoplay')
@@ -132,7 +90,57 @@ let addAutoplay
 let autoplayStart = false
 
 // creiamo un event listener che faccia partire l'autoplay in avanti
-autoplayButton.addEventListener('click', function() {
+autoplayButton.addEventListener('click', autoPlay)
+
+// al click su stop cancelliamo l'intervallo di 3sec e impostiamo l'autoplayStart su false in modo che non si ripeta
+stopButton.addEventListener('click', stopAutoPlay)
+
+// creiamo un event listener che faccia partire l'autoplay reverse
+autoplayReverseButton.addEventListener('click', autoPlayReverse)
+
+/*********
+FUNZIONI
+**********/ 
+
+function rightSlide() {
+    console.log('current slide', slideCounter)
+
+    let actualSlide = slideElements[slideCounter]
+
+    actualSlide.classList.remove('active-slide')
+
+    slideCounter ++  
+
+    if(slideCounter === slideElements.length) {
+
+        slideCounter = 0
+    }
+
+    let nextSlide = slideElements[slideCounter]
+
+    nextSlide.classList.add('active-slide')
+}
+
+function leftSlide() {
+    console.log('current slide', slideCounter)
+
+    let actualSlide = slideElements[slideCounter]
+
+    actualSlide.classList.remove('active-slide')
+
+    slideCounter --
+    
+    if(slideCounter < 0) {
+
+        slideCounter = slideElements.length - 1
+    }
+
+    let previousSlide = slideElements[slideCounter]
+
+    previousSlide.classList.add('active-slide')
+}
+
+function autoPlay() {
 
     // al momento del click controllo se la variabile e' false se lo e' la imposto su true e avvio l'autoplay 
     if (!autoplayStart) {
@@ -158,39 +166,38 @@ autoplayButton.addEventListener('click', function() {
 
         }, 3000)
     }
-})
+}
 
-// al click su stop cancelliamo l'intervallo di 3sec e impostiamo l'autoplayStart su false in modo che non si ripeta
-stopButton.addEventListener('click', function() {
+function stopAutoPlay() {
 
-  clearInterval(addAutoplay)
+    clearInterval(addAutoplay)
+  
+    autoplayStart = false
+}
 
-  autoplayStart = false
-})
+function autoPlayReverse() {
 
-// creiamo un event listener che faccia partire l'autoplay all'indietro
-autoplayReverseButton.addEventListener('click', function() {
+    if (!autoplayStart) {
 
-  if (!autoplayStart) {
+        autoplayStart = true
 
-    autoplayStart = true
+        addAutoplay = setInterval(function() {
 
-    addAutoplay = setInterval(function() {
+        let actualSlide = slideElements[slideCounter]
 
-      let actualSlide = slideElements[slideCounter]
+        actualSlide.classList.remove('active-slide')
 
-      actualSlide.classList.remove('active-slide')
+        slideCounter--
 
-      slideCounter--
+        if (slideCounter < 0) {
 
-      if (slideCounter < 0) {
+            slideCounter = slideElements.length - 1
+        }
 
-        slideCounter = slideElements.length - 1
-      }
-      let previousSlide = slideElements[slideCounter]
+        let previousSlide = slideElements[slideCounter]
 
-      previousSlide.classList.add('active-slide')
+        previousSlide.classList.add('active-slide')
 
-    }, 3000)
-  }
-})
+        }, 3000)
+    }
+}
